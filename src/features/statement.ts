@@ -1,10 +1,12 @@
-import { MovieCode } from "./Movie";
+import { MovieCode } from "../interfaces/Movie";
+import { Customer } from "../interfaces/Customer";
+import { MovieCollection } from "../interfaces/Movie";
 
-export const statement = (customer: any, movies: any): string => {
+export const statement = (customer: Customer, movies: MovieCollection): string => {
   let totalAmount = 0;
   let frequentRenterPoints = 0;
   let result = `Rental Record for ${customer.name}\n`;
-  for (let r of customer.rentals) {
+  customer.rentals.forEach(r => {
     let movie = movies[r.movieID];
     let thisAmount = 0;
 
@@ -31,7 +33,7 @@ export const statement = (customer: any, movies: any): string => {
 
     result += `\t${movie.title}\t${thisAmount}\n`;
     totalAmount += thisAmount;
-  }
+  });
   result += `Amount owed is ${totalAmount}\n`;
   result += `You earned ${frequentRenterPoints} frequent renter points\n`;
 
