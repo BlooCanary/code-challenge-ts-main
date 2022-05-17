@@ -1,10 +1,11 @@
 #!/usr/bin/env node
 
-import { Customer } from "./Customer";
-import { MovieCollection } from "./Movie";
+import { Customer } from "./interfaces/Customer";
+import { MovieCollection } from "./interfaces/Movie";
 
 import { Command } from "commander";
-import { statement } from "./statement";
+import { statement } from "./features/statement";
+import { htmlStatement } from "./features/htmlStatement";
 
 const program: Command = require("commander");
 const version: string = require("../package.json").version;
@@ -20,5 +21,10 @@ program
   .command("statement")
   .description("Prints out a plain-text statement for the customer")
   .action(() => console.log(statement(customer, movies)));
+
+program
+  .command("html-statement")
+  .description("Prints out an HTML statement for the customer")
+  .action(() => console.log(htmlStatement(customer, movies)));
 
 program.parse(process.argv);
