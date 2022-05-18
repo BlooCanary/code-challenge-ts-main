@@ -1,6 +1,7 @@
 export enum MovieId {
   F001 = "F001",
   F002 = "F002",
+  F003 = "F003",
 }
 
 export enum MovieCode {
@@ -9,7 +10,7 @@ export enum MovieCode {
   NEW = "new",
 }
 
-interface MovieDetails {
+export interface MovieDetails {
   title: string;
   code: MovieCode;
 }
